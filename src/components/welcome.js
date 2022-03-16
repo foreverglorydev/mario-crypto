@@ -60,9 +60,6 @@ export default function Welcome() {
             NotificationManager.warning('Please connect Wallet');
             return;
         }
-        else if (state.balance == '0') {
-            return;
-        }
         else {
             setFeeAmount(getFeeAmount());
             setReqAmount(getRequireAmount());
@@ -72,26 +69,24 @@ export default function Welcome() {
             setIsOpen(true);
         }
     }
+
     function closeModal() {
         setIsOpen(false);
     }
 
     const play = async () => {
-        setUserState();
-        history.push("/play");
-
-        // const provider = new ethers.providers.Web3Provider(window.ethereum);
-        // const signer = provider.getSigner();
-        // var SignedCoinContract = metatokenContract.connect(signer);
-        // var tx = await SignedCoinContract.transfer(adminAddress, feeamount)
-        //     .catch((err) => {
-        //     });
-        // if (tx != undefined) {
-        //     setWaiting(true);
-        //     await tx.wait();
-        //     setUserState();
-        //     history.push("/play");
-        // }
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        var SignedCoinContract = metatokenContract.connect(signer);
+        var tx = await SignedCoinContract.transfer(adminAddress, feeamount)
+            .catch((err) => {
+            });
+        if (tx != undefined) {
+            setWaiting(true);
+            await tx.wait();
+            setUserState();
+            history.push("/play");
+        }
     }
 
     const handleChainChanged = (chainId) => {
@@ -142,7 +137,7 @@ export default function Welcome() {
     return (
         <div className='background'>
             <div className='image'>
-                {/*<img src={title} alt='title' className='title' />*/}
+                <img src={title} alt='title' className='title' />
                 <button className="btn pure-material-button-contained" onClick={wallet.status !== "connected" ? onConnect : disconnect}>
                     {wallet.status === "connected" ?
                         (

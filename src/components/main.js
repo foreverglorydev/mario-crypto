@@ -94,8 +94,11 @@ export default function Main() {
         if (value == 16) {
             setFinish(true);
             window.finish();
+            setLevel(value - 1);
         }
-        setLevel(value);
+        else {
+            setLevel(value);
+        }
         return true;
     }
     const rewards = () => {

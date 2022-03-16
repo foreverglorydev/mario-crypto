@@ -16,7 +16,7 @@ body{
 	margin-left:0px; margin-top: 0px; border: 1px solid #ccc; overflow: hidden;
 	background-size: cover;
 }
-#world {
+#world { 
 	margin: 0; padding: 0; height: 100%; width: 100%; position: absolute;
 	bottom: 0; left: 0; z-index: 0;
 }
@@ -24,7 +24,7 @@ body{
 	margin: 0; padding: 0; height: 50px; width: 70px; text-align: right; font-size: 2.6em;
 	font-weight: bold; top: 25px; right: 130px; z-index: 1000;
 	position: absolute; font-family: 'SMB';
-
+	
 }
 .gaugeSprite {
 	margin: 0; padding: 0; z-index: 1000; position: absolute;
@@ -305,7 +305,7 @@ body{
 	text-align: center;
 	text-shadow: 0px 5px 0px rgb(255 255 255);
     font-family: cursive;
-
+	
 }
 .m-comment-txt{
 	color: rgb(161, 135, 64);

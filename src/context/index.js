@@ -37,7 +37,7 @@ const INIT_STATE = {
     user: "meta-man",
     usdamount: '',
     allowtokens: '0',
-    requiretoken: 10,
+    requiretoken: 50,
     entranceFee: 0.75,
     rewardtoken: 0.25,
     userstate: false,
@@ -78,6 +78,7 @@ export default function Provider({ children }) {
         try {
             if (wallet.status === "connected") {
                 const balance = await metatokenContract.balanceOf(wallet.account);
+                console.log('balance', balance)
                 dispatch({
                     type: "balance",
                     payload: fromBigNum(balance, 9).toFixed(0)
@@ -93,7 +94,7 @@ export default function Provider({ children }) {
     }
 
     const checkbalance = () => {
-        if (Number(state.balance) >= Number(state.allowtokens)) {
+        if (Number(state.balance) != 0 && Number(state.balance) >= Number(state.allowtokens)) {
             return true;
         }
         else {
